@@ -222,6 +222,38 @@ body {
     justify-items: center;
 }
 
+/* Estilos para la galería minimalista (solo resonancias) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    align-items: start;
+    margin: 20px 0;
+}
+
+.gallery-item {
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px var(--shadow);
+}
+
+.no-images {
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 0;
+}
+
 .sample-item {
     text-align: center;
 }
