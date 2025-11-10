@@ -67,6 +67,25 @@ def get_performance():
     except Exception as e:
         return jsonify({'error': 'No se pudieron obtener métricas', 'detail': str(e)}), 500
 
+
+@app.route('/models')
+def models_page():
+    """
+    Página que muestra una comparación visual y de métricas entre arquitecturas.
+    Si no existen modelos, se muestran resultados simulados usando `performance.get_model_performance()`.
+    """
+    try:
+        from performance import get_model_performance
+        perf = get_model_performance()
+    except Exception:
+        perf = None
+
+    # Tomar algunos ejemplos para mostrar (4 por modelo)
+    tumor_samples = processor.get_tumor_samples(n_samples=4)
+    examples = processor.process_samples_for_web(tumor_samples)
+
+    return render_template('models.html', performance=perf or {}, examples=examples)
+
 @app.route('/api/statistics')
 def get_statistics():
     """
