@@ -31,6 +31,45 @@
                 <p class="no-images">No hay imágenes disponibles.</p>
             {% endif %}
         </main>
+        {% if performance %}
+        <section class="performance-section">
+            <div class="section-header">
+                <h2>Rendimiento de arquitecturas</h2>
+            </div>
+            <div class="performance-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Arquitectura</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1</th>
+                            <th>Dice</th>
+                            <th>IoU</th>
+                            <th>Params (M)</th>
+                            <th>Inference (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for name, metrics in performance.items() %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ '%.2f' % (metrics.accuracy * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.precision * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.recall * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.f1_score * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.dice_coef * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.iou * 100) }}%</td>
+                            <td>{{ metrics.params_millions }}</td>
+                            <td>{{ metrics.inference_time_ms }} ms</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {% endif %}
     </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 """
 Aplicación Flask para visualización de análisis de MRI de tumores cerebrales
 """
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import os
 
 app = Flask(__name__)
@@ -37,11 +37,35 @@ def index():
     # Obtener muestras mixtas para galería adicional
     mixed_samples = processor.get_mixed_samples(n_samples=3)
     processed_mixed = processor.process_samples_for_web(mixed_samples)
-    
+
+    # Si el query param 'perf' está presente y es '1', cargamos métricas
+    performance = None
+    if request.args.get('perf') == '1':
+        try:
+            from performance import get_model_performance
+            performance = get_model_performance()
+        except Exception:
+            performance = None
+
     return render_template('index.html', 
                          stats=stats, 
                          samples=processed_samples,
-                         mixed_samples=processed_mixed)
+                         mixed_samples=processed_mixed,
+                         performance=performance)
+
+
+@app.route('/performance')
+def get_performance():
+    """
+    Endpoint que retorna las métricas de rendimiento entre arquitecturas.
+    Retorna JSON con métricas para cada arquitectura.
+    """
+    try:
+        from performance import get_model_performance
+        perf = get_model_performance()
+        return jsonify(perf)
+    except Exception as e:
+        return jsonify({'error': 'No se pudieron obtener métricas', 'detail': str(e)}), 500
 
 @app.route('/api/statistics')
 def get_statistics():
