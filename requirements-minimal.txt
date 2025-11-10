@@ -1,0 +1,6 @@
+# Versión alternativa ultraligera para Render
+# Usar solo si la versión actual sigue fallando
+
+Flask==3.0.3
+gunicorn==23.0.0
+Pillow==11.0.0

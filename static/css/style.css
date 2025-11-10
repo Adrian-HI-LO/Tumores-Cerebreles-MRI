@@ -5,12 +5,24 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #071021;
+    --bg-alt: #0b1224;
+    --card: #0f1724;
+    --card-2: #0b1220;
+    --text: #e6eef8;
+    --muted: #9aa4b2;
+    --accent: #7c3aed;
+    --accent-2: #22d3ee;
+    --shadow: rgba(2,6,23,0.7);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
     min-height: 100vh;
     padding: 20px;
-    color: #333;
+    color: var(--text);
 }
 
 .container {
@@ -20,11 +32,11 @@ body {
 
 /* Header */
 .header {
-    background: white;
+    background: var(--card);
     border-radius: 15px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
 .header-content {
@@ -36,7 +48,7 @@ body {
 }
 
 .header h1 {
-    color: #667eea;
+    color: var(--accent-2);
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -44,7 +56,7 @@ body {
 }
 
 .refresh-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -71,13 +83,13 @@ body {
 }
 
 .stat-card {
-    background: white;
+    background: var(--card-2);
     border-radius: 15px;
     padding: 25px;
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
     transition: transform 0.3s ease;
 }
 
@@ -86,53 +98,58 @@ body {
 }
 
 .stat-icon {
-    font-size: 3rem;
-    color: #667eea;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .stat-card.tumor .stat-icon {
-    color: #e74c3c;
+    background: linear-gradient(180deg, #4f1d2e, #2b0f14);
 }
 
 .stat-card.healthy .stat-icon {
-    color: #2ecc71;
+    background: linear-gradient(180deg, #0f3b2f, #06251a);
 }
 
 .stat-content h3 {
     font-size: 2.5rem;
     margin-bottom: 5px;
-    color: #333;
+    color: var(--text);
 }
 
 .stat-content p {
-    color: #666;
+    color: var(--muted);
     font-size: 1.1rem;
 }
 
 .percentage {
     font-size: 0.9rem;
-    color: #999;
+    color: #7f8a98;
 }
 
 /* Secciones */
 .chart-section,
 .samples-section,
 .detailed-analysis {
-    background: white;
+    background: var(--card);
     border-radius: 15px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
 .section-header {
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid var(--accent);
 }
 
 .section-header h2 {
-    color: #333;
+    color: var(--text);
     font-size: 1.8rem;
     display: flex;
     align-items: center;
@@ -142,7 +159,7 @@ body {
 /* Gráfico de barras */
 .chart-container h3 {
     text-align: center;
-    color: #666;
+    color: var(--muted);
     margin-bottom: 30px;
     font-size: 1.3rem;
 }
@@ -193,7 +210,7 @@ body {
 .bar-name {
     margin-top: 10px;
     font-size: 1.2rem;
-    color: #333;
+    color: var(--text);
     font-weight: 600;
 }
 
@@ -211,7 +228,7 @@ body {
 
 .sample-item h4 {
     margin-bottom: 10px;
-    color: #667eea;
+    color: var(--accent-2);
     font-size: 1rem;
 }
 
@@ -220,7 +237,7 @@ body {
     max-width: 250px;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px var(--shadow);
     transition: transform 0.3s ease;
 }
 
@@ -236,20 +253,20 @@ body {
 }
 
 .case-group {
-    background: #f8f9fa;
+    background: var(--card-2);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow);
 }
 
 .case-title {
     text-align: center;
     font-size: 1.3rem;
     font-weight: bold;
-    color: #667eea;
+    color: var(--accent-2);
     margin-bottom: 15px;
     padding: 10px;
-    background: white;
+    background: var(--card);
     border-radius: 8px;
 }
 
@@ -273,7 +290,7 @@ body {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px var(--shadow);
     transition: transform 0.3s ease;
 }
 
@@ -284,21 +301,16 @@ body {
 
 /* Footer */
 .footer {
-    background: white;
+    background: linear-gradient(135deg, var(--card) 0%, var(--card-2) 100%);
+    color: var(--text);
     border-radius: 15px;
     padding: 25px;
     text-align: center;
-    color: #666;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
 .footer p {
     margin: 5px 0;
-}
-
-.footer i {
-    color: #667eea;
-    margin-right: 8px;
 }
 
 /* Responsive */
@@ -360,11 +372,11 @@ body {
 
 /* Sección de Redes Neuronales */
 .neural-networks-info {
-    background: white;
+    background: var(--card);
     border-radius: 15px;
     padding: 40px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
 }
 
 .networks-grid {
@@ -375,10 +387,10 @@ body {
 }
 
 .network-card {
-    background: #f8f9fa;
+    background: var(--card-2);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow);
     transition: transform 0.3s ease;
 }
 
@@ -388,7 +400,7 @@ body {
 
 .network-header {
     padding: 25px;
-    color: white;
+    color: var(--text);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -396,15 +408,15 @@ body {
 }
 
 .network-header.alexnet {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(37,99,235,0.12) 100%);
 }
 
 .network-header.resnet {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, rgba(34,211,238,0.12) 0%, rgba(79,70,229,0.16) 100%);
 }
 
 .network-header i {
-    font-size: 2rem;
+    display: none;
 }
 
 .network-header h3 {
@@ -414,7 +426,7 @@ body {
 }
 
 .network-header .year {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.04);
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -426,7 +438,7 @@ body {
 }
 
 .network-content h4 {
-    color: #667eea;
+    color: var(--accent);
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 1.3rem;
@@ -437,7 +449,7 @@ body {
 }
 
 .network-content p {
-    color: #666;
+    color: var(--muted);
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -448,9 +460,9 @@ body {
     gap: 12px;
     margin: 20px 0;
     padding: 20px;
-    background: white;
+    background: var(--card);
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--accent);
 }
 
 .spec-item {
@@ -461,9 +473,15 @@ body {
 }
 
 .spec-item i {
-    color: #667eea;
-    font-size: 1.2rem;
-    width: 25px;
+    display: none;
+}
+
+.spec-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.03);
 }
 
 .features-list,
@@ -492,8 +510,7 @@ body {
 }
 
 .features-list i {
-    color: #2ecc71;
-    font-size: 1rem;
+    display: none;
 }
 
 .applications-list li {
@@ -510,8 +527,8 @@ body {
 }
 
 .math-formula {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, rgba(124,58,237,0.18) 0%, rgba(118,75,162,0.12) 100%);
+    color: var(--text);
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
@@ -540,7 +557,7 @@ body {
 .comparison-section {
     margin: 40px 0;
     padding: 30px;
-    background: #f8f9fa;
+    background: var(--card-2);
     border-radius: 12px;
 }
 
@@ -554,7 +571,7 @@ body {
 }
 
 .comparison-section h3 i {
-    color: #667eea;
+    display: none;
 }
 
 .comparison-table {
@@ -571,7 +588,7 @@ body {
 }
 
 .comparison-table thead {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
     color: white;
 }
 
@@ -609,7 +626,7 @@ body {
 }
 
 .importance-section h3 i {
-    color: #f39c12;
+    display: none;
 }
 
 .importance-grid {
@@ -619,11 +636,11 @@ body {
 }
 
 .importance-card {
-    background: white;
+    background: var(--card);
     padding: 25px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 10px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -636,20 +653,15 @@ body {
     width: 70px;
     height: 70px;
     margin: 0 auto 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(255,255,255,0.03);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.importance-icon i {
-    color: white;
-    font-size: 2rem;
-}
-
 .importance-card h4 {
-    color: #667eea;
+    color: var(--accent-2);
     margin-bottom: 10px;
     font-size: 1.2rem;
 }
