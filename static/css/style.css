@@ -254,6 +254,32 @@ body {
     padding: 40px 0;
 }
 
+.top-actions {
+    display:flex;
+    gap:12px;
+    justify-content:flex-end;
+    margin-bottom:12px;
+}
+
+.models-link {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.models-link:hover {
+    opacity: 0.95;
+}
+
+.cell-caption {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
 /* Grid de casos: 12 filas x 3 columnas */
 .cases-grid {
     display: flex;

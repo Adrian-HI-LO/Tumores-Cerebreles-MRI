@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class="container">
+        <div class="top-actions">
+            <a class="models-link" href="{{ url_for('models_page') }}">Comparar modelos</a>
+            <a class="models-link" href="{{ url_for('get_performance') }}">Ver métricas (JSON)</a>
+        </div>
         <!-- Mostrar hasta 12 casos (filas) con 3 columnas: MRI, Máscara, Overlay -->
         <main class="cases-grid">
             {% if samples %}
@@ -15,14 +19,17 @@
                     <div class="case-row">
                         <div class="case-cell">
                             <h4 class="cell-title">MRI del cerebro</h4>
+                            <div class="cell-caption">MRI {{ loop.index }}</div>
                             <img src="{{ sample.mri_image }}" alt="MRI {{ loop.index }}">
                         </div>
                         <div class="case-cell">
                             <h4 class="cell-title">Máscara</h4>
+                            <div class="cell-caption">Máscara {{ loop.index }}</div>
                             <img src="{{ sample.mask_image }}" alt="Máscara {{ loop.index }}">
                         </div>
                         <div class="case-cell">
                             <h4 class="cell-title">MRI con máscara</h4>
+                            <div class="cell-caption">Overlay {{ loop.index }}</div>
                             <img src="{{ sample.overlay_image }}" alt="Overlay {{ loop.index }}">
                         </div>
                     </div>
