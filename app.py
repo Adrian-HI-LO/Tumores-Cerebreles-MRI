@@ -3,6 +3,7 @@ Aplicación Flask para visualización de análisis de MRI de tumores cerebrales
 """
 from flask import Flask, render_template, jsonify, request
 import os
+import time
 
 app = Flask(__name__)
 
@@ -27,6 +28,9 @@ def index():
     """
     Página principal con visualización completa
     """
+    # Simular latencia de carga (añade ~1.5-2.5 segundos)
+    time.sleep(1.8)
+    
     # Obtener estadísticas
     stats = processor.get_statistics()
     
@@ -78,6 +82,9 @@ def models_page():
     Página que muestra una comparación visual y de métricas entre arquitecturas.
     Si no existen modelos, se muestran resultados simulados usando `performance.get_model_performance()`.
     """
+    # Simular latencia de carga (añade ~2-3 segundos)
+    time.sleep(2.2)
+    
     try:
         from performance import get_model_performance_jittered
         perf = get_model_performance_jittered()

@@ -801,7 +801,7 @@ body {
 
 /* Subtle visual filter to distinguish AlexNet examples */
 .model-card.alexnet .example img {
-    filter: sepia(0.12) contrast(1.03) saturate(0.95);
+    filter: hue-rotate(8deg) brightness(1.06) contrast(1.04) saturate(0.92);
 }
 
 .importance-card p {
