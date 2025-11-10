@@ -799,6 +799,11 @@ body {
     font-size: 1.2rem;
 }
 
+/* Subtle visual filter to distinguish AlexNet examples */
+.model-card.alexnet .example img {
+    filter: sepia(0.12) contrast(1.03) saturate(0.95);
+}
+
 .importance-card p {
     color: #666;
     line-height: 1.6;

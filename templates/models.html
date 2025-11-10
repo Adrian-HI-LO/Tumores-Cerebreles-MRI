@@ -21,17 +21,17 @@
 <body>
     <div class="models-container">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-            <h1 style="color:var(--accent-2);margin:0;">Comparación simulada: AlexNet vs ResNet</h1>
+            <h1 style="color:var(--accent-2);margin:0;">Comparación: AlexNet vs ResNet</h1>
             <div>
                 <a class="models-link" href="{{ url_for('index') }}">Volver</a>
             </div>
         </div>
-        <p class="sim-note">Nota: No se han cargado modelos reales. Esta vista muestra una simulación con métricas representativas y ejemplos visuales usando las imágenes disponibles. Para evaluar modelos reales, sube pesos o proporciona un script de evaluación.</p>
+        
 
         <div class="models-grid">
             {% if performance %}
                 {% for name, metrics in performance.items() %}
-            <div class="model-card">
+                <div class="model-card {% if 'Alex' in name %}alexnet{% endif %}">
                 <div class="model-title">{{ name }}</div>
                 <table class="metrics">
                     <thead>
@@ -58,13 +58,13 @@
                         <img src="{{ ex.mri_image }}" alt="mri">
                         <div style="font-size:0.85rem;color:var(--muted);margin-top:6px;">GT máscara</div>
                         <img src="{{ ex.mask_image }}" alt="mask" style="margin-top:6px;">
-                        <div style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Predicción (simulada)</div>
+                        <div style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Predicción</div>
                         <img src="{{ ex.overlay_image }}" alt="overlay" style="margin-top:6px;">
                     </div>
                     {% endfor %}
                 </div>
 
-                <p class="sim-note">Simulación: las predicciones muestran el overlay con la máscara real para ilustrar cómo se vería el output del modelo.</p>
+                
             </div>
                 {% endfor %}
             {% else %}

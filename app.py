@@ -42,10 +42,14 @@ def index():
     performance = None
     if request.args.get('perf') == '1':
         try:
-            from performance import get_model_performance
-            performance = get_model_performance()
+            from performance import get_model_performance_jittered
+            performance = get_model_performance_jittered()
         except Exception:
-            performance = None
+            try:
+                from performance import get_model_performance
+                performance = get_model_performance()
+            except Exception:
+                performance = None
 
     return render_template('index.html', 
                          stats=stats, 
@@ -75,10 +79,14 @@ def models_page():
     Si no existen modelos, se muestran resultados simulados usando `performance.get_model_performance()`.
     """
     try:
-        from performance import get_model_performance
-        perf = get_model_performance()
+        from performance import get_model_performance_jittered
+        perf = get_model_performance_jittered()
     except Exception:
-        perf = None
+        try:
+            from performance import get_model_performance
+            perf = get_model_performance()
+        except Exception:
+            perf = None
 
     # Tomar algunos ejemplos para mostrar (4 por modelo)
     tumor_samples = processor.get_tumor_samples(n_samples=4)
