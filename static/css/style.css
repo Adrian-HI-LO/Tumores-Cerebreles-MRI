@@ -254,6 +254,48 @@ body {
     padding: 40px 0;
 }
 
+/* Grid de casos: 12 filas x 3 columnas */
+.cases-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 10px 0 60px 0;
+}
+
+.case-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.case-cell {
+    background: transparent;
+    padding: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.case-cell .cell-title {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.case-cell img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px var(--shadow);
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .case-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .sample-item {
     text-align: center;
 }

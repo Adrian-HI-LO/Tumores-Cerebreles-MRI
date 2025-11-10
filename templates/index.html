@@ -8,18 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <!-- Galería simple: solo resonancias -->
-        <main class="gallery">
+        <!-- Mostrar hasta 12 casos (filas) con 3 columnas: MRI, Máscara, Overlay -->
+        <main class="cases-grid">
             {% if samples %}
                 {% for sample in samples %}
-                    <div class="gallery-item">
-                        <img src="{{ sample.mri_image }}" alt="MRI {{ loop.index }}">
-                    </div>
-                {% endfor %}
-            {% elif mixed_samples %}
-                {% for sample in mixed_samples %}
-                    <div class="gallery-item">
-                        <img src="{{ sample.mri_image }}" alt="MRI {{ loop.index }}">
+                    <div class="case-row">
+                        <div class="case-cell">
+                            <h4 class="cell-title">MRI del cerebro</h4>
+                            <img src="{{ sample.mri_image }}" alt="MRI {{ loop.index }}">
+                        </div>
+                        <div class="case-cell">
+                            <h4 class="cell-title">Máscara</h4>
+                            <img src="{{ sample.mask_image }}" alt="Máscara {{ loop.index }}">
+                        </div>
+                        <div class="case-cell">
+                            <h4 class="cell-title">MRI con máscara</h4>
+                            <img src="{{ sample.overlay_image }}" alt="Overlay {{ loop.index }}">
+                        </div>
                     </div>
                 {% endfor %}
             {% else %}

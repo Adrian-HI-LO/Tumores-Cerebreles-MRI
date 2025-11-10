@@ -41,9 +41,15 @@ class StaticMRIDataProcessor:
             n_samples: Número de muestras (siempre retorna 12)
         """
         samples = []
-        
-        # Usar las 12 imágenes pre-generadas
-        for i in range(min(n_samples, 12)):
+
+        # Seleccionar índices aleatorios entre los casos disponibles
+        avail = list(range(len(self.patient_ids)))
+        import random
+        random.shuffle(avail)
+
+        count = min(n_samples, len(avail), 12)
+        for k in range(count):
+            i = avail[k]
             samples.append({
                 'patient_id': self.patient_ids[i],
                 'mri_image': f'/static/images/samples/tumor_mri_{i}.png',
@@ -51,7 +57,7 @@ class StaticMRIDataProcessor:
                 'overlay_image': f'/static/images/samples/tumor_overlay_{i}.png',
                 'has_tumor': True
             })
-        
+
         return samples
     
     def get_mixed_samples(self, n_samples=3):
