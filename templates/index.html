@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de MRI - Sistema de Detección de Tumores Cerebrales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-actions">
+            <a class="models-link" href="{{ url_for('models_page') }}">Comparar modelos</a>
+            <a class="models-link" href="{{ url_for('get_performance') }}">Ver métricas (JSON)</a>
+        </div>
+        <!-- Mostrar hasta 12 casos (filas) con 3 columnas: MRI, Máscara, Overlay -->
+        <main class="cases-grid">
+            {% if samples %}
+                {% for sample in samples %}
+                    <div class="case-row">
+                        <div class="case-cell">
+                            <h4 class="cell-title">MRI del cerebro</h4>
+                            <div class="cell-caption">MRI {{ loop.index }}</div>
+                            <img src="{{ sample.mri_image }}" alt="MRI {{ loop.index }}">
+                        </div>
+                        <div class="case-cell">
+                            <h4 class="cell-title">Máscara</h4>
+                            <div class="cell-caption">Máscara {{ loop.index }}</div>
+                            <img src="{{ sample.mask_image }}" alt="Máscara {{ loop.index }}">
+                        </div>
+                        <div class="case-cell">
+                            <h4 class="cell-title">MRI con máscara</h4>
+                            <div class="cell-caption">Overlay {{ loop.index }}</div>
+                            <img src="{{ sample.overlay_image }}" alt="Overlay {{ loop.index }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-images">No hay imágenes disponibles.</p>
+            {% endif %}
+        </main>
+        {% if performance %}
+        <section class="performance-section">
+            <div class="section-header">
+                <h2>Rendimiento de arquitecturas</h2>
+            </div>
+            <div class="performance-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Arquitectura</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1</th>
+                            <th>Dice</th>
+                            <th>IoU</th>
+                            <th>Params (M)</th>
+                            <th>Inference (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for name, metrics in performance.items() %}
+                        <tr>
+                            <td>{{ name }}</td>
+                            <td>{{ '%.2f' % (metrics.accuracy * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.precision * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.recall * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.f1_score * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.dice_coef * 100) }}%</td>
+                            <td>{{ '%.2f' % (metrics.iou * 100) }}%</td>
+                            <td>{{ metrics.params_millions }}</td>
+                            <td>{{ metrics.inference_time_ms }} ms</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</body>
+</html>

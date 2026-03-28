@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comparación de Modelos - AlexNet vs ResNet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .models-container { max-width:1200px; margin: 24px auto; }
+        .models-grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+        .model-card { background: var(--card); padding:16px; border-radius:8px; box-shadow: 0 8px 30px var(--shadow); }
+        .model-title { color: var(--accent-2); font-size:1.25rem; margin-bottom:8px; }
+        .sim-note { font-size:0.9rem; color:var(--muted); margin-top:10px; }
+        .examples { display:grid; grid-template-columns: repeat(2,1fr); gap:10px; margin-top:12px; }
+        .example img { width:100%; height:auto; border-radius:6px; box-shadow:0 6px 18px var(--shadow); }
+        .metrics { width:100%; margin-top:8px; border-collapse:collapse; }
+        .metrics td, .metrics th { padding:6px 8px; color:var(--muted); }
+        .metrics thead th { color:var(--text); font-weight:600; }
+    </style>
+</head>
+<body>
+    <div class="models-container">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <h1 style="color:var(--accent-2);margin:0;">Comparación: AlexNet vs ResNet</h1>
+            <div>
+                <a class="models-link" href="{{ url_for('index') }}">Volver</a>
+            </div>
+        </div>
+        
+
+        <div class="models-grid">
+            {% if performance %}
+                {% for name, metrics in performance.items() %}
+                <div class="model-card {% if 'Alex' in name %}alexnet{% endif %}">
+                <div class="model-title">{{ name }}</div>
+                <table class="metrics">
+                    <thead>
+                        <tr>
+                            <th>Métrica</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Accuracy</td><td>{{ '%.2f' % (metrics.accuracy * 100) }}%</td></tr>
+                        <tr><td>Precision</td><td>{{ '%.2f' % (metrics.precision * 100) }}%</td></tr>
+                        <tr><td>Recall</td><td>{{ '%.2f' % (metrics.recall * 100) }}%</td></tr>
+                        <tr><td>F1</td><td>{{ '%.2f' % (metrics.f1_score * 100) }}%</td></tr>
+                        <tr><td>Dice</td><td>{{ '%.2f' % (metrics.dice_coef * 100) }}%</td></tr>
+                        <tr><td>IoU</td><td>{{ '%.2f' % (metrics.iou * 100) }}%</td></tr>
+                        <tr><td>Params (M)</td><td>{{ metrics.params_millions }}</td></tr>
+                        <tr><td>Inf. time</td><td>{{ metrics.inference_time_ms }} ms</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="examples">
+                    {% for ex in examples %}
+                    <div class="example">
+                        <img src="{{ ex.mri_image }}" alt="mri">
+                        <div style="font-size:0.85rem;color:var(--muted);margin-top:6px;">GT máscara</div>
+                        <img src="{{ ex.mask_image }}" alt="mask" style="margin-top:6px;">
+                        <div style="font-size:0.85rem;color:var(--muted);margin-top:6px;">Predicción</div>
+                        <img src="{{ ex.overlay_image }}" alt="overlay" style="margin-top:6px;">
+                    </div>
+                    {% endfor %}
+                </div>
+
+                
+            </div>
+                {% endfor %}
+            {% else %}
+                <div style="grid-column:1/-1;padding:12px;color:var(--muted);">No hay métricas disponibles para mostrar. Visita <a href="{{ url_for('get_performance') }}">/performance</a> para obtener el JSON de métricas.</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
