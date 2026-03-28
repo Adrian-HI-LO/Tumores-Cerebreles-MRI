@@ -1,31 +1,31 @@
-# 🧠 Detección de Tumores Cerebrales con MRI
+# Detección de Tumores Cerebrales con MRI
 
 <p align="center">
-  <img src="recursos/demo.gif" alt="Demo de la aplicación" width="700"/>
+  <img src="recursos/Tumores_Cerebrales.gif" alt="Demostración de la aplicación" width="700"/>
 </p>
 
 Aplicación web con **Flask** para el análisis y visualización de imágenes de resonancia magnética (MRI) cerebral, orientada a la detección de tumores sobre el dataset TCGA.
 
 ---
 
-## ✨ Características
+## Características
 
 | Función | Descripción |
 |---|---|
-| 📊 Estadísticas | Métricas del dataset con gráficos interactivos |
-| 🖼️ Galería | MRI originales, máscaras y superposiciones |
-| 🔍 Análisis detallado | 12 casos con visualización completa |
-| 🔄 Actualización dinámica | Nuevas muestras aleatorias con un clic |
-| 📱 Diseño responsivo | Interfaz adaptable a cualquier dispositivo |
+| Estadísticas | Métricas del dataset con gráficos interactivos |
+| Galería | MRI originales, máscaras y superposiciones |
+| Análisis detallado | 12 casos con visualización completa |
+| Actualización dinámica | Nuevas muestras aleatorias con un clic |
+| Diseño responsivo | Interfaz adaptable a cualquier dispositivo |
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Backend**: Python · Flask · Pandas · NumPy
 - **Visión artificial**: OpenCV · scikit-image · Pillow
 - **Frontend**: HTML5 · CSS3 · JavaScript
 - **Despliegue**: Render
 
-## 🚀 Instalación local
+## Instalación local
 
 ```bash
 # 1. Clonar el repositorio
@@ -47,7 +47,7 @@ Abre `http://localhost:5000` en tu navegador.
 
 > **Requisito**: asegúrate de contar con `Brain_MRI/data_mask.csv` y las imágenes del dataset en la carpeta correspondiente.
 
-## 📁 Estructura
+## Estructura
 
 ```
 Tumores-Cerebreles-MRI/
@@ -59,7 +59,7 @@ Tumores-Cerebreles-MRI/
 └── static/                 # CSS, JS e imágenes generadas
 ```
 
-## 🌐 Despliegue en Render
+## Despliegue en Render
 
 1. Sube el proyecto a GitHub y conéctalo en [Render.com](https://render.com).
 2. Crea un **Web Service** con la siguiente configuración:
@@ -68,7 +68,7 @@ Tumores-Cerebreles-MRI/
    - **Start Command**: `gunicorn app:app`
 3. Haz clic en **Create Web Service** y espera ~5 minutos.
 
-## 📊 Dataset
+## Dataset
 
 Dataset **TCGA** de imágenes MRI cerebrales:
 
@@ -79,5 +79,5 @@ Dataset **TCGA** de imágenes MRI cerebrales:
 ---
 
 <p align="center">
-  ⭐ Si te resulta útil, dale una estrella en GitHub
+  Si te resulta útil, dale una estrella en GitHub.
 </p>
